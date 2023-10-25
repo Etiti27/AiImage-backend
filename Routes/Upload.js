@@ -1,5 +1,5 @@
 const multer  = require('multer');
-const uploadModel=require('../Functions/Database').default;
+const uploadModel=require('../Functions/Database').uploadModel;
 const _=require('lodash');
 
 const storage = multer.diskStorage({
@@ -38,7 +38,9 @@ if (req.fileValidationError){
             filefile:req.file.originalname
           });
           newImage.save()
-          .then(function (){console.log('saved success');})
+          .then(function (){console.log('saved success');
+           res.redirect(`${process.env.Frontend_origin}`);
+        })
           .catch(function (err) {res.json(err);
     
        

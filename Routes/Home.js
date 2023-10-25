@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const uploadModel=require('../Functions/Database').uploadModel;
 router.get('/', (req, res) => {
-
+console.log(req.isAuthenticated());
     // uploadModel.find({}, function (err, docs) { 
     //     if (err){ 
     //         console.log(err); 

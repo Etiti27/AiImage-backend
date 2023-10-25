@@ -1,5 +1,7 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
+const passport=require('passport');
+const passportLocalMongoose=require('passport-local-mongoose');
 
 
 
@@ -40,15 +42,17 @@ try {
       type: String,
       required: true,
     },
-    email: { 
+    names: { 
       type: String,
       required: true
     },
     password: {
       type: String,
-      required: true,
+      required: false,
     }
   })
+
+  UserSchema.plugin(passportLocalMongoose);
 
   const UserModel=mongoose.model('user', UserSchema);
 
@@ -56,4 +60,4 @@ try {
   
   
 
-  module.exports= {uploadModel, UserModel,mongooseUrl}
+  module.exports= {uploadModel, UserModel,mongooseUrl, UserSchema}
