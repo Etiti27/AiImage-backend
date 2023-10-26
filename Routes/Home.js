@@ -12,10 +12,8 @@ console.log(req.isAuthenticated());
     // }); 
 
     // res.json('Welcome')
-    uploadModel.find({}).then(function(files) {
-            res.json(files);
-    }).catch(function(err) {
-        console.log(err);
+    uploadModel.find({}).then((result)=>{
+        res.json({status:'ok', data:result});
     })
     
 

@@ -21,14 +21,11 @@ try {
       required: true,
     },
     file: {
-      data: Buffer,
-      contentType: String,
+      type: String,
+      required: true,
       
     },
-    filefile: {
-        type: String,
-        required: true,
-      },
+    
     uploadTime: {
       type: Date,
       default: Date.now,

@@ -19,11 +19,13 @@ const passport=require('passport');
 const passportLocalMongoose=require('passport-local-mongoose');
 const UserSchema=require('./Functions/Database').UserSchema;
 const UserModel=require('./Functions/Database').UserModel;
-const deleteItemId=require('./Routes/DeleteItem')
+const deleteItemId=require('./Routes/DeleteItem');
+const ImageUploadRoute=require('./Routes/ImageUpload');
 //medialware functions
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true , parameterLimit: 50000, limit: '50mb' }));
 app.use(cors());
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: "50mb" }))
 app.use(session({
     secret: process.env.secret_key,
     resave: true,
@@ -53,7 +55,7 @@ app.use('/upload', UploadRoute);
 app.use('/reset', ResetRoute);
 app.use('/resetpass', ResetPass);
 app.use('/delete', deleteItemId);
-
+app.use('/uploadimage', ImageUploadRoute);
 
 app.post('/register', (req,res)=>{
     const {username, password, names} = req.body;
